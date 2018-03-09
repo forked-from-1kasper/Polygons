@@ -1,5 +1,5 @@
 package animegular
 
 object GraphicsApp extends App {
-  val win = new MyWindow
+  val win = Window(800, 600, 35)
 }
