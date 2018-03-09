@@ -1,5 +1,7 @@
 package animegular
 
+import scala.language.postfixOps
+
 import java.awt.{Color, Graphics2D}
 
 import Move._
