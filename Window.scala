@@ -83,5 +83,5 @@ class Window(width: Int, height: Int, fps: Int) extends JFrame("Some Swing Appli
 }
 
 object Window {
-  def apply(width: Int, height: Int, fps: Int): Window = new Window(width, height, fps)
+  def apply(width: Int, height: Int, fps: Int): Window = new Window(width, height, 1000 / fps)
 }
