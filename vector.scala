@@ -1,17 +1,21 @@
-package polygons
+package animegular
 
-case class GeneralVector (x : Double, y : Double) {
-  val asTuple = (x, y)
+case class V(x: Double, y: Double) {
 
-  def +(other : GeneralVector) = other match {
-    case GeneralVector(x̂, ŷ) => GeneralVector(x + x̂, y + ŷ)
+  import math._
+
+  val asTuple: (Double, Double) = (x, y)
+
+  def +(other: V): V = other match {
+    case V(x̂, ŷ) => V(x + x̂, y + ŷ)
   }
 
-  def unary_-() = GeneralVector(-x, -y)
-  def -(other : GeneralVector) = this + (-other)
-  def *(k : Double) = GeneralVector(x * k, y * k)
+  def unary_-(): V = V(-x, -y)
 
-  def rotate(φ : Double) =
-    GeneralVector(x * math.cos(φ) - y * math.sin(φ),
-                  x * math.sin(φ) + y * math.cos(φ))
+  def -(other: V): V = this + (-other)
+
+  def *(k: Double): V = V(x * k, y * k)
+
+  def rotate(φ: Double): V = V(x * cos(φ) - y * sin(φ), x * sin(φ) + y * cos(φ))
+
 }
