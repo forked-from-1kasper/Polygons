@@ -1,3 +1,5 @@
+package polygons
+
 import javax.swing._
 
 import java.awt.image.BufferedImage
@@ -7,8 +9,6 @@ import java.awt.RenderingHints
 import java.awt.Color
 import java.awt.Graphics
 import java.awt.Graphics2D
-
-import polygons._
 
 class MyWindow extends JFrame("Some Swing application") {
   import java.awt.Dimension
@@ -79,6 +79,8 @@ class MyWindow extends JFrame("Some Swing application") {
   timer.start
 }
 
-object GraphicsApp extends App {
-  val win = new MyWindow
+object GraphicsApp {
+  def main(args : Array[String]): Unit = {
+    val win = new MyWindow
+  }
 }

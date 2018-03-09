@@ -1,7 +1,8 @@
 FILES=vector.scala polygon.scala main.scala
 LIBS=
-CLASSNAME=GraphicsApp
-OUTPUT=out/
+CLASSNAME=polygons.GraphicsApp
+OUTPUT=out
+JARNAME=app.jar
 
 build: clean
 	mkdir $(OUTPUT)
@@ -12,3 +13,6 @@ run:
 
 clean:
 	rm -rf $(OUTPUT)
+
+jar: build
+	jar cvfm $(JARNAME) MANIFEST.MF -C $(OUTPUT) .
