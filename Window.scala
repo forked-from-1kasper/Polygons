@@ -1,12 +1,15 @@
 package animegular
 
+import scalaz._
+import Scalaz._
+
 import java.awt.{Color, Graphics2D, RenderingHints}
 import java.awt.image.BufferedImage
 import javax.swing.{JFrame, JPanel}
 
 import animegular.Move.{Movements, Point}
 
-class Window(width: Int, height: Int, fps: Int) extends JFrame("Some Swing Application") {
+class Window(width: Int, height: Int, fps: Int, transformPolygons: List[Poly] => List[Poly], initialState: List[Poly]) extends JFrame("Some Swing Application") {
 
   import JFrame._
   import java.awt.Dimension
@@ -27,28 +30,7 @@ class Window(width: Int, height: Int, fps: Int) extends JFrame("Some Swing Appli
   setVisible(true)
   setResizable(false)
 
-
-  var p1: Poly = Poly(
-    Movements(
-      Point(100, 100),
-      Point(300, 100),
-      Point(100, 300),
-      Point(300, 300),
-    ),
-    Point(200, 200),
-    Color.blue
-  )
-
-  var p2 = Poly(
-    Movements(
-      Point(300, 300),
-      Point(300, 400),
-      Point(500, 500),
-      Point(400, 300),
-    ),
-    Point(400, 400),
-    Color.blue
-  )
+  var lastState: List[Poly] = initialState
 
   def paintPanel(g: Graphics2D)(e: ActionEvent) {
 
@@ -63,11 +45,8 @@ class Window(width: Int, height: Int, fps: Int) extends JFrame("Some Swing Appli
     g2.setColor(Color.white)
     g2.fillRect(0, 0, size.width, size.height)
 
-    p1 = p1 rotate (math.Pi / 180.0)
-    p2 = p2 rotate (math.Pi / 360.0)
-
-    p1 draw g2
-    p2 draw g2
+    lastState = transformPolygons(lastState)
+    lastState ∘ (_ draw g2)
 
     g2.dispose()
 
@@ -77,11 +56,11 @@ class Window(width: Int, height: Int, fps: Int) extends JFrame("Some Swing Appli
 
   val graphics = panel.getGraphics.asInstanceOf[Graphics2D]
 
-  val timer = new Timer (fps, paintPanel(graphics))
+  val timer = new Timer (1000 / fps, paintPanel(graphics))
   timer.start
 
 }
 
-object Window {
-  def apply(width: Int, height: Int, fps: Int): Window = new Window(width, height, 1000 / fps)
-}
+//object Window {
+//  def apply(width: Int, height: Int, fps: Int): Window = new Window(width, height, 1000 / fps)
+//}
