@@ -43,5 +43,5 @@ object GraphicsApp extends App {
     source.zipWithIndex ∘ transformPoly
   }
 
-  val win = new Window(800, 600, fps = 24, transform, polygons)
+  val win = new Window(800, 600, fps = 30, transform, polygons)
 }
