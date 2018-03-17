@@ -16,6 +16,10 @@ case class Vector2D(x: Double, y: Double) {
 
   def *(k: Double): Vector2D = Vector2D(x * k, y * k)
 
-  def rotate(φ: Double): Vector2D = Vector2D(x * cos(φ) - y * sin(φ), x * sin(φ) + y * cos(φ))
+  def rotate(φ: Double): Vector2D =
+    Vector2D(x * cos(φ) - y * sin(φ), x * sin(φ) + y * cos(φ))
+
+  def noncentralRotate(φ: Double, v: Vector2D) =
+    ((this - v) rotate φ) + v
 
 }

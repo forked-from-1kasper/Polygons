@@ -13,10 +13,10 @@ case class Poly(points: List[Point], center: Point, color: Color) {
 
   def rotate(φ : Double): Poly = {
 
-    def noncentralRotation(v1: Point, v2: Point) =
-      ((v1 - v2) rotate φ) + v2
+    def noncentralRotate(v1: Point, v2: Point) =
+      v1.noncentralRotate(φ, v2)
 
-    Poly(points map (noncentralRotation(_, center)), center, color)
+    Poly(points map (noncentralRotate(_, center)), center, color)
 
   }
 

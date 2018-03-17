@@ -4,31 +4,14 @@ package animegular
 //import Scalaz._
 
 import java.awt.Color
-
 import animegular.Move.Point
 
 object GraphicsApp extends App {
-  val p1: Poly = Poly(
-    List(
-      Point(100, 100),
-      Point(300, 100),
-      Point(100, 300),
-      Point(300, 300),
-    ),
-    Point(200, 200),
-    Color.blue
-  )
+  val p1: Poly =
+    Figures.rectangle(Point(200, 200), 100, 50, Color.blue)
 
-  val p2 = Poly(
-    List(
-      Point(300, 300),
-      Point(300, 400),
-      Point(500, 500),
-      Point(400, 300),
-    ),
-    Point(400, 400),
-    Color.blue
-  )
+  val p2 =
+    Figures.regularPolygon(Point(400, 400), 50, 7, Color.blue)
   val polygons = List(p1, p2)
 
   def transform(source: List[Poly]) = {
