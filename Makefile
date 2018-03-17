@@ -1,14 +1,13 @@
 S=:
 
-FILES=V.scala Move.scala Poly.scala GraphicsApp.scala Window.scala
-LIBS=jar/scalaz-core_2.12-7.2.20.jar$Sjar/scalaz-effect_2.12-7.2.20.jar
+LIBS=
 CLASSNAME=animegular.GraphicsApp
 OUTPUT=out
-JARNAME=app.jar
+JARNAME=animegular.jar
 
 build: clean
 	mkdir $(OUTPUT)
-	scalac -encoding utf8 -classpath "$(LIBS)" $(FILES) -d $(OUTPUT) -feature
+	scalac -encoding utf8 -classpath "$(LIBS)" *.scala -d $(OUTPUT) -feature
 
 run:
 	scala -classpath "$(LIBS)$Sout" $(CLASSNAME)

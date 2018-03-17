@@ -1,15 +1,15 @@
 package animegular
 
-import scalaz._
-import Scalaz._
+//import scalaz._
+//import Scalaz._
 
 import java.awt.Color
 
-import animegular.Move.{Movements, Point}
+import animegular.Move.Point
 
 object GraphicsApp extends App {
   val p1: Poly = Poly(
-    Movements(
+    List(
       Point(100, 100),
       Point(300, 100),
       Point(100, 300),
@@ -20,7 +20,7 @@ object GraphicsApp extends App {
   )
 
   val p2 = Poly(
-    Movements(
+    List(
       Point(300, 300),
       Point(300, 400),
       Point(500, 500),
@@ -35,12 +35,12 @@ object GraphicsApp extends App {
     def transformPoly(tuple: (animegular.Poly, Int)) = {
       val (p, index) = tuple
       index match {
-        case 0 => (p rotate (math.Pi / 180.0)) move V(1.0, 1.0)
+        case 0 => (p rotate (math.Pi / 180.0)) move Vector2D(1.0, 1.0)
         case 1 => p rotate math.Pi / 360.0
         case _ => p
       }
     }
-    source.zipWithIndex ∘ transformPoly
+    source.zipWithIndex map transformPoly
   }
 
   val win = new Window(800, 600, fps = 30, transform, polygons)

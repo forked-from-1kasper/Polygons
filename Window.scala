@@ -1,15 +1,20 @@
 package animegular
 
-import scalaz._
-import Scalaz._
+//import scalaz._
+//import Scalaz._
 
 import java.awt.{Color, Graphics2D, RenderingHints}
 import java.awt.image.BufferedImage
 import javax.swing.{JFrame, JPanel}
 
-import animegular.Move.{Movements, Point}
+import animegular.Move.Point
 
-class Window(width: Int, height: Int, fps: Int, transformPolygons: List[Poly] => List[Poly], initialState: List[Poly]) extends JFrame("Some Swing Application") {
+class Window(
+  width: Int,
+  height: Int,
+  fps: Int,
+  transformPolygons: List[Poly] => List[Poly],
+  initialState: List[Poly]) extends JFrame("Some Swing Application") {
 
   import JFrame._
   import java.awt.Dimension
@@ -45,9 +50,8 @@ class Window(width: Int, height: Int, fps: Int, transformPolygons: List[Poly] =>
     g2.fillRect(0, 0, size.width, size.height)
 
     lastState = transformPolygons(lastState)
-    lastState ∘ (_ draw g2)
+    lastState map (_ draw g2)
 
-    //g.clearRect(0, 0, size.width, size.height)
     g.drawImage(img, 0, 0, null)
   }
 

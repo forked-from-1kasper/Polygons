@@ -1,9 +1,6 @@
 package animegular
 
 object Move {
-  type Point = V
-  def Point(x: Int, y: Int) = V(x,y)
-
-  type Movements = List[Point]
-  def Movements(ms: Point*) = List(ms: _*)
+  type Point = Vector2D
+  def Point(x: Int, y: Int) = Vector2D(x,y)
 }
