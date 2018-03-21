@@ -13,7 +13,7 @@ class Window(
   width: Int,
   height: Int,
   fps: Int,
-  transformPolygons: List[Poly] => List[Poly],
+  getPolygons: () => List[Poly],
   initialState: List[Poly]) extends JFrame("Some Swing Application") {
 
   import JFrame._
@@ -35,7 +35,7 @@ class Window(
   setVisible(true)
   setResizable(false)
 
-  var lastState: List[Poly] = initialState
+  //var lastState: List[Poly] = initialState
 
   val img = new BufferedImage(size.width, size.height, BufferedImage.TYPE_INT_RGB)
   val g2 = img.getGraphics.asInstanceOf[Graphics2D]
@@ -49,8 +49,9 @@ class Window(
     g2.setColor(Color.white)
     g2.fillRect(0, 0, size.width, size.height)
 
-    lastState = transformPolygons(lastState)
-    lastState map (_ draw g2)
+    //lastState = transformPolygons(lastState)
+    //lastState map (_ draw g2)
+    (getPolygons()) map (_ draw g2)
 
     g.drawImage(img, 0, 0, null)
   }

@@ -12,9 +12,10 @@ object GraphicsApp extends App {
 
   val p2 =
     Figures.regularPolygon(Point(400, 400), 50, 7, Color.blue)
-  val polygons = List(p1, p2)
 
-  def transform(source: List[Poly]) = {
+  var polygons = List(p1, p2)
+
+  def returnPolygons(): List[Poly] = {
     def transformPoly(tuple: (animegular.Poly, Int)) = {
       val (p, index) = tuple
       index match {
@@ -23,8 +24,9 @@ object GraphicsApp extends App {
         case _ => p
       }
     }
-    source.zipWithIndex map transformPoly
+    polygons = polygons.zipWithIndex map transformPoly
+    polygons
   }
 
-  val win = new Window(800, 600, fps = 30, transform, polygons)
+  val win = new Window(800, 600, fps = 30, returnPolygons, polygons)
 }
