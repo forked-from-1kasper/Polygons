@@ -28,5 +28,5 @@ object GraphicsApp extends App {
     polygons
   }
 
-  val win = new Window(800, 600, fps = 30, returnPolygons)
+  val win = new Window(800, 600, fps = 30, returnPolygons _)
 }
