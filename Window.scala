@@ -13,8 +13,7 @@ class Window(
   width: Int,
   height: Int,
   fps: Int,
-  getPolygons: () => List[Poly],
-  initialState: List[Poly]) extends JFrame("Some Swing Application") {
+  getPolygons: () => List[Poly]) extends JFrame("Some Swing Application") {
 
   import JFrame._
   import java.awt.Dimension
